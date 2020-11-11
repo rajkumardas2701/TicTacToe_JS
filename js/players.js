@@ -1,6 +1,6 @@
-const playerFactory = (name, mark) => ({
+const players = (name, mark) => ({
   name,
   mark,
 });
 
-export default playerFactory;
+export default players;

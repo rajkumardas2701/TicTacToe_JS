@@ -11,3 +11,5 @@ const board = () => {
     [2, 4, 6],
   ];
 };
+
+export default board;
