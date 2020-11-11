@@ -31,7 +31,7 @@
   
   .board {
     width: 100vw;
-    height: 100vh;
+    /* height: 100vh; */
     display: grid;
     grid-template-columns: repeat(3, auto);
     justify-content: center;
@@ -122,8 +122,11 @@
   
   .start-modal button {
     border: none;
+    width: 50%;
+    margin: 0 auto;
     padding: 9px;
     border-radius: 3px;
+    color: rgb(20, 1, 13);
     background: rgb(43, 214, 109);
   }
   
@@ -133,8 +136,8 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    height: 60%;
-    width: 50%;
+    height: 50%;
+    width: 40%;
     justify-content: space-around;
   }
   
@@ -150,4 +153,3 @@
     border-radius: 5px;
     border: none;
   }
-  
