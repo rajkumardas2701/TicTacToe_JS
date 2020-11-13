@@ -1,5 +1,5 @@
 const board = () => {
-  const field = ['X', '0', 'X', '0', 'X', '0', 'X', '0', 'X'];
+  const field = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
   const winLines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -10,6 +10,19 @@ const board = () => {
     [0, 4, 8],
     [2, 4, 6],
   ];
+
+  // const getField = () => { field };
+
+  // console.log(getField);
+
+  // const getWinLines = () => winLines;
+
+  return {
+    // getField,
+    field,
+  };
 };
+
+// board();
 
 export default board;
