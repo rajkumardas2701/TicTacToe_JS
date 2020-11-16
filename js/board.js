@@ -1,4 +1,4 @@
-import controller from "./main.js";
+const field = ['', '', '', '', '', '', '', '', ''];
 
 const board = () => {
   const winLines = [
@@ -11,9 +11,6 @@ const board = () => {
     [0, 4, 8],
     [2, 4, 6],
   ];
-
-  const field = [];
-
   const DOMStrings = {
     // board: '.board',
     grid: document.querySelector('.board'),
@@ -30,11 +27,12 @@ const board = () => {
   const setField = (idx, val) => {
     // alert('inside set field');
     // idx.preventDefault();
-    console.log(field);
-    field[idx] = val;
+    // console.log(field);
+    if (idx !== '') {
+      field[idx] = val;
+    }
     displayBoard();
-    // controller.init();
-    console.log(field);
+    // console.log(field);
   };
 
 

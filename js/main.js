@@ -5,18 +5,19 @@ import board from './board.js';
 // import players from './players.js';
 // import * as elements from './DOMElements.js';
 const controller = (() => {
+  const DOM = board().DOMStrings;
   const setupEventListeners = () => {
-    const DOM = board().DOMStrings;
     DOM.grid.addEventListener('click', addMove);
     // board().displayBoard();
   };
 
   const addMove = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const mark = event.target.id.slice(5, 6);
+    // console.log(mark);
     board().setField(mark, 'X');
     // board().displayBoard();
-    console.log('Testing');
+    // console.log(event);
   };
 
   return {
@@ -28,4 +29,3 @@ const controller = (() => {
 
 controller.init();
 export default controller;
-// console.log(board().DOMStrings.grid);
