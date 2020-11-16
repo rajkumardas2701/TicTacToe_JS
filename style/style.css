@@ -25,8 +25,12 @@ header :first-child {
   color: rgb(55, 197, 55);
 }
 
-header :nth-child(2) {
+#vs {
   color: rgb(247, 31, 31);
+}
+
+header :nth-child(3) {
+  color: rgb(55, 197, 55);
 }
 
 .board {

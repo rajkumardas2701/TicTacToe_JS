@@ -1,5 +1,6 @@
+import controller from "./main.js";
+
 const board = () => {
-  const field = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
   const winLines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -11,18 +12,43 @@ const board = () => {
     [2, 4, 6],
   ];
 
-  // const getField = () => { field };
+  const field = [];
+
+  const DOMStrings = {
+    // board: '.board',
+    grid: document.querySelector('.board'),
+  };
+
+  // const getField = () => field;
+
+  const displayBoard = () => {
+    for (let i = 0; i < field.length; i += 1) {
+      document.querySelector(`#cell-${i}`).textContent = field[i];
+    }
+  };
+
+  const setField = (idx, val) => {
+    // alert('inside set field');
+    // idx.preventDefault();
+    console.log(field);
+    field[idx] = val;
+    displayBoard();
+    // controller.init();
+    console.log(field);
+  };
+
 
   // console.log(getField);
 
   // const getWinLines = () => winLines;
 
   return {
-    // getField,
-    field,
+    // field,
+    DOMStrings,
+    setField,
+    displayBoard,
+    // displayController,
   };
 };
-
-// board();
 
 export default board;

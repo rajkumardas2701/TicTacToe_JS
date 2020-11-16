@@ -4,23 +4,28 @@ import/extensions, implicit-arrow-linebreak, operator-linebreak  */
 import board from './board.js';
 // import players from './players.js';
 // import * as elements from './DOMElements.js';
+const controller = (() => {
+  const setupEventListeners = () => {
+    const DOM = board().DOMStrings;
+    DOM.grid.addEventListener('click', addMove);
+    // board().displayBoard();
+  };
 
-// console.log(board().field);
+  const addMove = (event) => {
+    event.preventDefault();
+    const mark = event.target.id.slice(5, 6);
+    board().setField(mark, 'X');
+    // board().displayBoard();
+    console.log('Testing');
+  };
 
-const boardElements = board().field;
-// console.log(boardElements);
-
-const displayController = (function () {
   return {
-
-    displayBoard() {
-      for (let i = 0; i < boardElements.length; i += 1) {
-        document.querySelector(`#cell-${i}`).textContent = boardElements[i];
-      }
+    init() {
+      setupEventListeners();
     },
   };
-}());
+})();
 
-const controller = (function (displayCntrl) {
-  displayCntrl.displayBoard();
-}(displayController));
+controller.init();
+export default controller;
+// console.log(board().DOMStrings.grid);
