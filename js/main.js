@@ -33,6 +33,10 @@ const controller = (() => {
     return false;
   };
 
+  const draw = () => {
+    return !field.includes('');
+  };
+
   const resetGame = () => {
     for (let i = 0; i < field.length; i += 1) {
       field[i] = '';
@@ -45,7 +49,6 @@ const controller = (() => {
     elements.grid.addEventListener('click', addMove);
   };
 
-  // console.log(field);
   const addMove = (event) => {
     const position = event.target.id.slice(5, 6);
     document.getElementById('alert-msg').innerHTML = '';
@@ -53,6 +56,9 @@ const controller = (() => {
       console.log(field);
       if (winner(currentPlayer)) {
         console.log(`${currentPlayer.name} is Winner`);
+        resetGame();
+      } else if (draw()) {
+        console.log('Game Draw');
         resetGame();
       } else changePlayer();
     }
