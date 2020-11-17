@@ -52,8 +52,9 @@ const board = () => {
     DOMStrings,
     setField,
     displayBoard,
+    winLines,
     // displayController,
   };
 };
 
-export default board;
+export { board, field };
