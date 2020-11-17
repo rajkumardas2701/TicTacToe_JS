@@ -56,4 +56,4 @@ const board = () => {
   };
 };
 
-export { board, field };
+export default board;
