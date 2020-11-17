@@ -1,3 +1,5 @@
+// import controller from './main.js';
+
 const field = ['', '', '', '', '', '', '', '', ''];
 
 const board = () => {
@@ -25,13 +27,19 @@ const board = () => {
   };
 
   const setField = (idx, val) => {
-    // alert('inside set field');
-    // idx.preventDefault();
-    // console.log(field);
-    if (idx !== '') {
+    let success = false;
+    const altmsg = 'Please pick correct cell';
+    if (field[idx] !== '') {
+      document.getElementById('alert-msg').innerHTML = altmsg;
+      success = false;
+    }
+    if (idx !== '' && field[idx] === '') {
       field[idx] = val;
+      success = true;
+      // controller.changePlayer();
     }
     displayBoard();
+    return success;
     // console.log(field);
   };
 
@@ -41,7 +49,6 @@ const board = () => {
   // const getWinLines = () => winLines;
 
   return {
-    // field,
     DOMStrings,
     setField,
     displayBoard,
@@ -49,4 +56,4 @@ const board = () => {
   };
 };
 
-export default board;
+export { board, field };

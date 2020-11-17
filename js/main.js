@@ -2,23 +2,33 @@
 import/extensions, implicit-arrow-linebreak, operator-linebreak  */
 
 import board from './board.js';
-// import players from './players.js';
-// import * as elements from './DOMElements.js';
+import players from './players.js';
+import * as elements from './DOMElements.js';
+
 const controller = (() => {
-  const DOM = board().DOMStrings;
-  const setupEventListeners = () => {
-    DOM.grid.addEventListener('click', addMove);
-    // board().displayBoard();
+  const player1 = players('Test 1', 'X');
+  const player2 = players('Test 2', 'O');
+  elements.playerOne.textContent = `${player1.name} as "${player1.mark}"`;
+  elements.playerTwo.textContent = `${player2.name} as "${player2.mark}"`;
+
+  let currentPlayer = player1;
+
+  const changePlayer = () => {
+    currentPlayer = currentPlayer === player1 ? player2 : player1;
   };
 
-  const addMove = (event) => {
-    // event.preventDefault();
-    const mark = event.target.id.slice(5, 6);
-    // console.log(mark);
-    board().setField(mark, 'X');
-    // board().displayBoard();
-    // console.log(event);
+  const setupEventListeners = () => {
+    elements.grid.addEventListener('click', addMove);
   };
+
+  // console.log(field);
+  const addMove = (event) => {
+    const position = event.target.id.slice(5, 6);
+    document.getElementById('alert-msg').innerHTML = '';
+    if (position !== '' && board().setField(position, currentPlayer.mark)) { changePlayer(); }
+    // console.log(field);
+  };
+
 
   return {
     init() {
@@ -28,4 +38,4 @@ const controller = (() => {
 })();
 
 controller.init();
-export default controller;
+// export default controller;
