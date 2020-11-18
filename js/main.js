@@ -6,12 +6,21 @@ import players from './players.js';
 import * as elements from './DOMElements.js';
 
 const controller = (() => {
-  const player1 = players('Test 1', 'X');
-  const player2 = players('Test 2', 'O');
-  elements.playerOne.textContent = `${player1.name} as "${player1.mark}"`;
-  elements.playerTwo.textContent = `${player2.name} as "${player2.mark}"`;
+  let player1;
+  let player2;
+  let currentPlayer;
 
-  let currentPlayer = player1;
+  const setupPlayers = (players, elements) => {
+    player1 = players(elements.playerOneInput.value, 'X');
+    player2 = players(elements.playerTwoInput.value, 'O');
+    elements.playerOne.textContent = `${player1.name} as "${player1.mark}"`;
+    elements.playerTwo.textContent = `${player2.name} as "${player2.mark}"`;
+    currentPlayer = player1;
+  };
+
+  const setupEventListeners = () => {
+    elements.grid.addEventListener('click', addMove);
+  };
 
   const changePlayer = () => {
     currentPlayer = currentPlayer === player1 ? player2 : player1;
@@ -33,9 +42,7 @@ const controller = (() => {
     return false;
   };
 
-  const draw = () => {
-    return !field.includes('');
-  };
+  const draw = () => !field.includes('');
 
   const resetGame = () => {
     for (let i = 0; i < field.length; i += 1) {
@@ -45,32 +52,50 @@ const controller = (() => {
     currentPlayer = player1;
   };
 
-  const setupEventListeners = () => {
-    elements.grid.addEventListener('click', addMove);
-  };
-
   const addMove = (event) => {
     const position = event.target.id.slice(5, 6);
     document.getElementById('alert-msg').innerHTML = '';
     if (position !== '' && board().setField(position, currentPlayer.mark)) {
-      console.log(field);
+      let status;
       if (winner(currentPlayer)) {
-        console.log(`${currentPlayer.name} is Winner`);
-        resetGame();
+        status = 'win';
+        showEndModal(currentPlayer, status);
       } else if (draw()) {
-        console.log('Game Draw');
-        resetGame();
+        status = 'draw';
+        showEndModal(currentPlayer, status);
       } else changePlayer();
     }
   };
 
+  const showEndModal = (currentPlayer, status) => {
+    if (status === 'win') {
+      endModalAction(`${currentPlayer.name} is Winner`);
+    } else {
+      endModalAction('Game Draw!!!');
+    }
+  };
+
+  const endModalAction = (msg) => {
+    elements.endModal.style.display = 'grid';
+    document.getElementById('winner').innerHTML = msg;
+    elements.replay.addEventListener('click', () => {
+      resetGame();
+      elements.endModal.style.display = 'none';
+    });
+    elements.exit.addEventListener('click', () => {
+      window.location.reload();
+      elements.endModal.style.display = 'none';
+    });
+  };
 
   return {
     init() {
       setupEventListeners();
+      setupPlayers(players, elements);
     },
   };
 })();
 
-controller.init();
-// export default controller;
+elements.startGame.addEventListener('click', () => {
+  controller.init();
+});

@@ -1,5 +1,3 @@
-// import controller from './main.js';
-
 const field = ['', '', '', '', '', '', '', '', ''];
 
 const board = () => {
@@ -14,11 +12,9 @@ const board = () => {
     [2, 4, 6],
   ];
   const DOMStrings = {
-    // board: '.board',
     grid: document.querySelector('.board'),
   };
 
-  // const getField = () => field;
 
   const displayBoard = () => {
     for (let i = 0; i < field.length; i += 1) {
@@ -36,24 +32,16 @@ const board = () => {
     if (idx !== '' && field[idx] === '') {
       field[idx] = val;
       success = true;
-      // controller.changePlayer();
     }
     displayBoard();
     return success;
-    // console.log(field);
   };
-
-
-  // console.log(getField);
-
-  // const getWinLines = () => winLines;
 
   return {
     DOMStrings,
     setField,
     displayBoard,
     winLines,
-    // displayController,
   };
 };
 

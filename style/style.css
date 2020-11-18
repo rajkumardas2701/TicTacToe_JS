@@ -160,8 +160,9 @@ button:hover {
 }
 
 #alert-msg {
-  color: red;
+  color: blue;
   background-color: burlywood;
   margin: auto auto;
   width: 30%;
+  font-size: large;
 }
