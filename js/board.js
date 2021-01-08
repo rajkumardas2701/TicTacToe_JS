@@ -33,7 +33,7 @@ const board = () => {
       field[idx] = val;
       success = true;
     }
-    displayBoard();
+    // displayBoard();
     return success;
   };
 
